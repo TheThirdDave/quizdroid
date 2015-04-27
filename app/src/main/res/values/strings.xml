@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">quizdroid</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="math">Math</string>
+    <string name="physics">Physics</string>
+    <string name="superHeroes">Marvel Super Heroes</string>
     <string name="action_settings">Settings</string>
 </resources>
