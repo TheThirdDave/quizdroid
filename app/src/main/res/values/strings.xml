@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">quizdroid</string>
     <string name="math">Math</string>
+    <string name="mathDesc">In this topic you will be quizzed on simple math topics ranging from arithmetic to algebra. See how many you can solve correctly!</string>
     <string name="physics">Physics</string>
+    <string name="physicsDesc">In this topic you will be quizzed on physical laws, theories, and applications of the laws and theories. See how many you can solve correctly!</string>
     <string name="superHeroes">Marvel Super Heroes</string>
     <string name="action_settings">Settings</string>
 </resources>
