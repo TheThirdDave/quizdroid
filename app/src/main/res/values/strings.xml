@@ -37,7 +37,10 @@
     </string-array>
     <string name="physics">Physics</string>
     <string name="physicsDesc">In this topic you will be quizzed on physical laws, theories, and applications of the laws and theories. See how many you can solve correctly!</string>
-    <string name="physicsq1">What is the unit measurement that stands for the ratio of an objects mass to it's volume?</string>
+    <string-array name="physicsq1">
+        <item>What is the unit measurement that stands for the ratio of an objects mass to it's volume?</item>
+        <item>@array/physicsq1Answers</item>
+    </string-array>
     <string-array name="physicsq1Answers">
         <item>Inertia</item>
         <item>Density</item>
@@ -46,7 +49,10 @@
     </string-array>
     <string name="superHeroes">Marvel Super Heroes</string>
     <string name="superDesc">In this topic you will be quizzed on your knowledge of the Marvel Hero universe. Hope you have plans to go see the new avenger movie so you can get a good refresh! See how many you can solve correctly!</string>
-    <string name="superq1">Who is the genius, billionaire, playboy, philanthropist?</string>
+    <string-array name="superq1">
+        <item>Who is the genius, billionaire, playboy, philanthropist?</item>
+        <item>@array/superq1Answers</item>
+    </string-array>
     <string-array name="superq1Answers">
         <item>Tony Stark</item>
         <item>Bill Gates</item>
