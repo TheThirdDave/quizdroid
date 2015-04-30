@@ -38,7 +38,7 @@
     <string name="physics">Physics</string>
     <string name="physicsDesc">In this topic you will be quizzed on physical laws, theories, and applications of the laws and theories. See how many you can solve correctly!</string>
     <string-array name="physicsq1">
-        <item>What is the unit measurement that stands for the ratio of an objects mass to it's volume?</item>
+        <item>What is the unit measurement that stands for the ratio of an objects mass to it\'s volume?</item>
         <item>@array/physicsq1Answers</item>
     </string-array>
     <string-array name="physicsq1Answers">
