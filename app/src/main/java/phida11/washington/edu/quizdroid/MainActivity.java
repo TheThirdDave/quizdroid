@@ -18,6 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements OnClickListener {
     public final static String DESCRIPTION = "phida11.washington.edu.quizdroid.DESCRIPTION";
     public final static String TOPIC = "phida11.washington.edu.quizdroid.TOPIC";
+    public final static String QUESTIONS = "phida11.washington.edu.quizdroid.QUESTIONS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 Button temp = (Button) findViewById(R.id.button1);
                 String type = temp.getText().toString();
                 intent.putExtra(TOPIC, type);
+                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.mathQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.mathDesc));
                 startActivity(intent);
                 finish();
@@ -52,6 +54,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 Button temp2 = (Button) findViewById(R.id.button2);
                 String type2 = temp2.getText().toString();
                 intent.putExtra(TOPIC, type2);
+                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.physicsQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.physicsDesc));
                 startActivity(intent);
                 finish();
@@ -62,6 +65,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 Button temp3 = (Button) findViewById(R.id.button3);
                 String type3 = temp3.getText().toString();
                 intent.putExtra(TOPIC, type3);
+                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.superQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.superDesc));
                 startActivity(intent);
                 finish();
