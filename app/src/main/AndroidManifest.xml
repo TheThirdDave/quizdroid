@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".TopicActivity"
+            android:label="@string/topic_type"
+            android:parentActivityName=".MainActivity" >
+
+        </activity>
     </application>
 
 </manifest>
