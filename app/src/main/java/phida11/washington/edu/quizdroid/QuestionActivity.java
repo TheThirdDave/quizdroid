@@ -5,12 +5,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 
 public class QuestionActivity extends ActionBarActivity {
     private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,14 @@ public class QuestionActivity extends ActionBarActivity {
             ans2.setText(answers[1]);
             ans3.setText(answers[2]);
             ans4.setText(answers[3]);
+
+            Button submit = (Button) findViewById(R.id.submit);
+            submit.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+                }
+            });
         }
 
 
