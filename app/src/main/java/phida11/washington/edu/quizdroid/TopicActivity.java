@@ -38,6 +38,8 @@ public class TopicActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent passing = new Intent(TopicActivity.this, QuestionActivity.class);
                 passing.putExtra(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+                passing.putExtra("answersCorrect", "0");
+                passing.putExtra("currentQuestion", 0);
                 startActivity(passing);
             }
         });

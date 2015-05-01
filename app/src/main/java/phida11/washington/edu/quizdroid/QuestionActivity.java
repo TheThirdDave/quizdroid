@@ -21,6 +21,7 @@ public class QuestionActivity extends ActionBarActivity {
 
         if (getIntent() != null) {
             intent = getIntent();
+            int currentQuestion = intent.getIntExtra("currentQuesiont", 0);
             String[] questions = intent.getStringArrayExtra(MainActivity.QUESTIONS);
             TextView questionDisplay = (TextView) findViewById(R.id.question);
             int arrayID = getResources().getIdentifier(questions[0], "array", this.getPackageName());
@@ -42,7 +43,7 @@ public class QuestionActivity extends ActionBarActivity {
             submit.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    
+
                 }
             });
         }
