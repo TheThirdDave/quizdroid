@@ -20,7 +20,10 @@
             android:name=".TopicActivity"
             android:label="@string/topic_type"
             android:parentActivityName=".MainActivity" >
-
+        </activity>
+        <activity
+            android:name=".QuestionActivity"
+            android:label="@string/title_activity_question" >
         </activity>
     </application>
 

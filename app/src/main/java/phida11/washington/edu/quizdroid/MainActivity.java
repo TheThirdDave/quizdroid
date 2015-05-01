@@ -46,7 +46,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.mathQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.mathDesc));
                 startActivity(intent);
-                finish();
                 break;
 
             case R.id.button2:
@@ -57,7 +56,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.physicsQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.physicsDesc));
                 startActivity(intent);
-                finish();
                 break;
 
             case R.id.button3:
@@ -68,7 +66,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.superQuestions));
                 intent.putExtra(DESCRIPTION, getResources().getString(R.string.superDesc));
                 startActivity(intent);
-                finish();
                 break;
         }
     }

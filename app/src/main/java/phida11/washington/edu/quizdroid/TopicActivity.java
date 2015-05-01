@@ -36,7 +36,9 @@ public class TopicActivity extends ActionBarActivity {
         begin.setOnClickListener( new OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent passing = new Intent(TopicActivity.this, QuestionActivity.class);
+                passing.putExtra(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+                startActivity(passing);
             }
         });
 
