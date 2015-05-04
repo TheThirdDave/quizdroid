@@ -14,6 +14,7 @@
         <item>15</item>
         <item>11</item>
         <item>10</item>
+        <item>11</item>
     </string-array>
     <string-array name="mathq2">
         <item>If 5x + 15 = 20. What does x equal?</item>
@@ -24,6 +25,7 @@
         <item>x=7</item>
         <item>x=1</item>
         <item>x=0</item>
+        <item>x=1</item>
     </string-array>
     <string-array name="mathq3">
         <item>What is the derivative of the following equation? 6x^3 - 5x^2 + 2</item>
@@ -34,6 +36,7 @@
         <item>5x^3 + 6x^2</item>
         <item>x</item>
         <item>-18x^2 + 10x</item>
+        <item>18x^2 - 10x</item>
     </string-array>
     <string name="physics">Physics</string>
     <string name="physicsDesc">In this topic you will be quizzed on physical laws, theories, and applications of the laws and theories. See how many you can solve correctly!</string>
@@ -49,6 +52,7 @@
         <item>Density</item>
         <item>Force</item>
         <item>Volume</item>
+        <item>Density</item>
     </string-array>
     <string name="superHeroes">Marvel Super Heroes</string>
     <string name="superDesc">In this topic you will be quizzed on your knowledge of the Marvel Hero universe. Hope you have plans to go see the new avenger movie so you can get a good refresh! See how many you can solve correctly!</string>
@@ -64,10 +68,12 @@
         <item>Bill Gates</item>
         <item>Bruce Wayne</item>
         <item>Peter Parker</item>
+        <item>Tony Stark</item>
     </string-array>
     <string name="action_settings">Settings</string>
     <string name="topic_type">Topic Overview</string>
     <string name="title_activity_question">QuestionActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_answer">AnswerActivity</string>
 </resources>

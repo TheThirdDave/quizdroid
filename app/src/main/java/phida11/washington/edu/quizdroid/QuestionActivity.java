@@ -8,11 +8,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class QuestionActivity extends ActionBarActivity {
     private Intent intent;
+    private int currentQuestion;
+    private String[] answers;
+    private String[] questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,19 +26,22 @@ public class QuestionActivity extends ActionBarActivity {
 
         if (getIntent() != null) {
             intent = getIntent();
-            int currentQuestion = intent.getIntExtra("currentQuesiont", 0);
-            String[] questions = intent.getStringArrayExtra(MainActivity.QUESTIONS);
+            currentQuestion = intent.getIntExtra("currentQuestion", 0);
+            questions = intent.getStringArrayExtra(MainActivity.QUESTIONS);
             TextView questionDisplay = (TextView) findViewById(R.id.question);
-            int arrayID = getResources().getIdentifier(questions[0], "array", this.getPackageName());
+            int arrayID = getResources().getIdentifier(questions[currentQuestion], "array", this.getPackageName());
             String[] question = getResources().getStringArray(arrayID);
             questionDisplay.setText(question[0]);
+
+            //Getting a reference to the radio buttons and the answers to the question
             int arrayId2 = getResources().getIdentifier(question[1], "array", this.getPackageName());
-            String[] answers = getResources().getStringArray(arrayId2);
+            answers = getResources().getStringArray(arrayId2);
             RadioButton ans1 = (RadioButton) findViewById(R.id.radioButton);
             RadioButton ans2 = (RadioButton) findViewById(R.id.radioButton2);
             RadioButton ans3 = (RadioButton) findViewById(R.id.radioButton3);
             RadioButton ans4 = (RadioButton) findViewById(R.id.radioButton4);
 
+            //Setting the answers to the radio buttons
             ans1.setText(answers[0]);
             ans2.setText(answers[1]);
             ans3.setText(answers[2]);
@@ -43,7 +51,29 @@ public class QuestionActivity extends ActionBarActivity {
             submit.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(QuestionActivity.this, "working?", Toast.LENGTH_SHORT).show();
 
+                    //Increment the current question being asked
+                    Intent passing = new Intent(QuestionActivity.this, AnswerActivity.class);
+                    passing.putExtra("currentQuestion", currentQuestion + 1);
+
+                    RadioGroup group = (RadioGroup) findViewById(R.id.answers);
+                    int selectedId = group.getCheckedRadioButtonId();
+
+                    //Increment the correct answers counter if necessary
+                    RadioButton selected = (RadioButton) findViewById(selectedId);
+                    if (answers[4].equals(selected.getText())) {
+                        passing.putExtra("answersCorrect", intent.getIntExtra("answersCorrect", 0) + 1);
+                    } else {
+                        passing.putExtra("answersCorrect", intent.getIntExtra("answersCorrect", 0));
+                    }
+
+                    //pass on the selected anwser
+                    passing.putExtra("answerSelected", selected.getText());
+
+                    //Pass on the question array
+                    passing.putExtra(MainActivity.QUESTIONS, questions);
+                    startActivity(passing);
                 }
             });
         }
