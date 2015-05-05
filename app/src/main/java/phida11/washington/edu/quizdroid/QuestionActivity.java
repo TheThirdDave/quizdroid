@@ -51,8 +51,6 @@ public class QuestionActivity extends ActionBarActivity {
             submit.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(QuestionActivity.this, "working?", Toast.LENGTH_SHORT).show();
-
                     //Increment the current question being asked
                     Intent passing = new Intent(QuestionActivity.this, AnswerActivity.class);
                     passing.putExtra("currentQuestion", currentQuestion + 1);
@@ -68,8 +66,9 @@ public class QuestionActivity extends ActionBarActivity {
                         passing.putExtra("answersCorrect", intent.getIntExtra("answersCorrect", 0));
                     }
 
-                    //pass on the selected anwser
+                    //pass on the selected answer
                     passing.putExtra("answerSelected", selected.getText());
+                    passing.putExtra("correctAnswer", answers[4]);
 
                     //Pass on the question array
                     passing.putExtra(MainActivity.QUESTIONS, questions);

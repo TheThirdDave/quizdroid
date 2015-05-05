@@ -4,6 +4,8 @@
     <string name="mathDesc">In this topic you will be quizzed on simple math topics ranging from arithmetic to algebra. See how many you can solve correctly!</string>
     <string-array name="mathQuestions">
         <item>mathq1</item>
+        <item>mathq2</item>
+        <item>mathq3</item>
     </string-array>
     <string-array name="mathq1">
         <item>What is 5 + 6?</item>
@@ -76,4 +78,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_answer">AnswerActivity</string>
+    <string name="yourAns">Your Answer</string>
+    <string name="correctAns">Correct Answer</string>
+    <string name="nextQuestion">Next</string>
+    <string name="finished">Finish</string>
 </resources>

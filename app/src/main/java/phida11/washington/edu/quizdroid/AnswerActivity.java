@@ -5,9 +5,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class AnswerActivity extends ActionBarActivity {
+    Intent intent;
 
 
     @Override
@@ -15,9 +19,53 @@ public class AnswerActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
-        if (getIntent() == null) {
-            Intent intent = getIntent();
+        if (getIntent() != null) {
+            intent = getIntent();
 
+            //Set the users answer
+            TextView userAnswer = (TextView) findViewById(R.id.userAnswer);
+            userAnswer.setText(intent.getStringExtra("answerSelected"));
+
+            //set the correct answer
+            TextView correctAnswer = (TextView) findViewById(R.id.correctAnswer);
+            correctAnswer.setText(intent.getStringExtra("correctAnswer"));
+
+            //set the number of correct questions answered
+            TextView answersCorrect = (TextView) findViewById(R.id.numerCorrect);
+            answersCorrect.setText(intent.getIntExtra("answersCorrect", 0) + " out of " +
+                    intent.getStringArrayExtra(MainActivity.QUESTIONS).length);
+
+            Button next = (Button) findViewById(R.id.next);
+
+            if (intent.getIntExtra("currentQuestion", 0) != intent.getStringArrayExtra(MainActivity.QUESTIONS).length) {
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent passing = new Intent(AnswerActivity.this, QuestionActivity.class);
+
+                        //pass on the question array
+                        passing.putExtra(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+
+                        //pass what questions user is on
+                        passing.putExtra("currentQuestion", intent.getIntExtra("currentQuestion", 0));
+
+                        //pass on number of questions correct
+                        passing.putExtra("answersCorrect", intent.getIntExtra("answersCorrect", 0));
+
+                        startActivity(passing);
+                    }
+                });
+            } else {
+                next.setText("Finish");
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent finish = new Intent(AnswerActivity.this, MainActivity.class);
+                        startActivity(finish);
+                    }
+                });
+
+            }
         }
     }
 
