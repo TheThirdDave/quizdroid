@@ -1,9 +1,12 @@
 package phida11.washington.edu.quizdroid;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,12 +15,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 /**
  * Created by David on 4/29/2015.
  */
-public class TopicActivity extends ActionBarActivity {
+public class TopicActivity extends FragmentActivity {
     private Intent intent;
 
     @Override
@@ -25,25 +30,66 @@ public class TopicActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topic_overview);
 
+        if (findViewById(R.id.fragment_container) != null) {
 
-        intent = getIntent();
-        TextView topic = (TextView) findViewById(R.id.topic);
-        TextView description = (TextView) findViewById(R.id.description);
-        topic.setText(intent.getStringExtra(MainActivity.TOPIC));
-        description.setText(intent.getStringExtra(MainActivity.DESCRIPTION));
-
-        Button begin = (Button) findViewById(R.id.startButton);
-        begin.setOnClickListener( new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent passing = new Intent(TopicActivity.this, QuestionActivity.class);
-                passing.putExtra(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
-                passing.putExtra("answersCorrect", 0);
-                passing.putExtra("currentQuestion", 0);
-                startActivity(passing);
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
             }
-        });
 
+            // Create a new Fragment to be placed in the activity layout
+            TopicFragment firstFragment = new TopicFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent's extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'fragment_container' FrameLayout
+            getFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
+        }
+    }
+
+    public void loadQuestionFrag(int currentQuestion, int answersCorrect) {
+        intent = getIntent();
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        QuestionFragment questionFrag = new QuestionFragment();
+
+        Bundle questionBundle = new Bundle();
+        questionBundle.putStringArray(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+        questionBundle.putInt(MainActivity.CURRENT_QUESTION, currentQuestion);
+        questionBundle.putInt(MainActivity.ANSWERS_CORRECT, answersCorrect);
+
+        questionFrag.setArguments(questionBundle);
+
+        ft.replace(R.id.fragment_container, questionFrag);
+        ft.commit();
+    }
+
+    public void loadAnswerFrag(int currentQuestion, int answersCorrect, String answerSelected, String correctAnswer) {
+        intent = getIntent();
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        AnswerFragment answerFrag = new AnswerFragment();
+
+        Bundle answerBundle = new Bundle();
+        answerBundle.putString("answerSelected", answerSelected);
+        answerBundle.putString("correctAnswer", correctAnswer);
+        answerBundle.putInt(MainActivity.CURRENT_QUESTION, currentQuestion);
+        answerBundle.putInt(MainActivity.ANSWERS_CORRECT, answersCorrect);
+        answerBundle.putInt("questionCount", intent.getStringArrayExtra(MainActivity.QUESTIONS).length);
+        answerBundle.putStringArray(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+
+        answerFrag.setArguments(answerBundle);
+
+        ft.replace(R.id.fragment_container, answerFrag);
+        ft.commit();
     }
 
     @Override

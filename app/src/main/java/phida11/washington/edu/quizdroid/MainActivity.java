@@ -19,6 +19,8 @@ public class MainActivity extends Activity implements OnClickListener {
     public final static String DESCRIPTION = "phida11.washington.edu.quizdroid.DESCRIPTION";
     public final static String TOPIC = "phida11.washington.edu.quizdroid.TOPIC";
     public final static String QUESTIONS = "phida11.washington.edu.quizdroid.QUESTIONS";
+    public final static String CURRENT_QUESTION = "phida11.washington.edu.quizdroid.CURRENT_QUESTION";
+    public final static String ANSWERS_CORRECT = "phida11.washingtone.edu.quizdroid.ANSWERS_CORRECT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
