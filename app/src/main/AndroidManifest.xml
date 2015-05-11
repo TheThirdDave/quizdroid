@@ -6,6 +6,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name="phida11.washington.edu.quizdroid.QuizApp"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
@@ -20,14 +21,6 @@
             android:name=".TopicActivity"
             android:label="@string/topic_type"
             android:parentActivityName=".MainActivity" >
-        </activity>
-        <activity
-            android:name=".QuestionActivity"
-            android:label="@string/title_activity_question" >
-        </activity>
-        <activity
-            android:name=".AnswerActivity"
-            android:label="@string/title_activity_answer" >
         </activity>
     </application>
 
