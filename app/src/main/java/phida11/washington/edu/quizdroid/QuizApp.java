@@ -3,6 +3,7 @@ package phida11.washington.edu.quizdroid;
 import android.app.Application;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +15,7 @@ import java.util.HashMap;
 public class QuizApp extends Application {
     private static QuizApp instance;
     HashMap<String, Integer> questions;
+    private TopicReprository topicRepo;
 
     public QuizApp() {
         if (instance == null) {
@@ -36,25 +38,16 @@ public class QuizApp extends Application {
         try {
             InputStream inputStream = getAssets().open("data.json");
             json = readJSONFile(inputStream);
+            JSONArray jsonData = new JSONArray(json);
 
-            JSONObject jsonData = new JSONObject(json);
-
-            // get the array that exist in the key 'questions'
-            /*
-                {
-                    question: "Why is it always raining here?",
-                    food : 124
-                }
-             */
-
-            String questionString = jsonData.getString("question");
-            int food = jsonData.getInt("food");
-
-            this.questions.put(questionString, food); // populate your repository
+            //call and build the reprository
+            topicRepo = new JSONReprository(jsonData);
 
         } catch (IOException e) {
+            topicRepo = new InMemoryReprository();
             e.printStackTrace();
         } catch (JSONException e) {
+            topicRepo = new InMemoryReprository();
             e.printStackTrace();
         }
     }
@@ -69,13 +62,8 @@ public class QuizApp extends Application {
         return new String(buffer, "UTF-8");
     }
 
-    protected void initSingletons()
+    public TopicReprository getTopicReprository()
     {
-        // Initialize the instance of MySingleton
-    }
-
-    public void customAppMethod()
-    {
-        // Custom application method
+        return topicRepo;
     }
 }
