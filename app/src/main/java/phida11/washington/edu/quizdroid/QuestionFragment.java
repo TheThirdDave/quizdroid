@@ -99,7 +99,7 @@ public class QuestionFragment extends Fragment {
 
                     //Grab the selected answer and correct answer
                     String selectedAnswer = (String) selected.getText();
-                    String correctAnswer = (String) answers.get(questions.get(currentQuestion).getCorrect());
+                    String correctAnswer = (String) answers.get(questions.get(currentQuestion).getCorrect() - 1);
 
                     if (hostActivity instanceof TopicActivity) {
                         ((TopicActivity) hostActivity).loadAnswerFrag(currentQuestion + 1, answersCorrect, selectedAnswer, correctAnswer);
