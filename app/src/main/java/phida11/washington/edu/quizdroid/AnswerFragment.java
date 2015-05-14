@@ -21,6 +21,7 @@ public class AnswerFragment extends Fragment {
     private int answersCorrect;
     private int questionCount;
 
+
     private View v;
 
     public AnswerFragment() {
@@ -30,6 +31,8 @@ public class AnswerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             currentQuestion = getArguments().getInt(MainActivity.CURRENT_QUESTION);
             answersCorrect = getArguments().getInt(MainActivity.ANSWERS_CORRECT);

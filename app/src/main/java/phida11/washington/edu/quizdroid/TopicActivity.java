@@ -25,10 +25,18 @@ import android.widget.TextView;
 public class TopicActivity extends FragmentActivity {
     private Intent intent;
 
+    private TopicReprository topicRepo;
+    private QuizApp app;
+    private Topic topic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topic_overview);
+
+        app = (QuizApp)getApplication();
+        topicRepo = app.getTopicReprository();
+
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -53,6 +61,8 @@ public class TopicActivity extends FragmentActivity {
 
     public void loadQuestionFrag(int currentQuestion, int answersCorrect) {
         intent = getIntent();
+        topic = topicRepo.getTopic(intent.getStringExtra(MainActivity.TOPIC));
+
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -60,9 +70,10 @@ public class TopicActivity extends FragmentActivity {
         QuestionFragment questionFrag = new QuestionFragment();
 
         Bundle questionBundle = new Bundle();
-        questionBundle.putStringArray(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+       // questionBundle.putStringArrayList(MainActivity.QUESTIONS, topic.getQuestions()));
         questionBundle.putInt(MainActivity.CURRENT_QUESTION, currentQuestion);
         questionBundle.putInt(MainActivity.ANSWERS_CORRECT, answersCorrect);
+        questionBundle.putString(MainActivity.TOPIC, intent.getStringExtra(MainActivity.TOPIC));
 
         questionFrag.setArguments(questionBundle);
 
@@ -72,6 +83,7 @@ public class TopicActivity extends FragmentActivity {
 
     public void loadAnswerFrag(int currentQuestion, int answersCorrect, String answerSelected, String correctAnswer) {
         intent = getIntent();
+        topic = topicRepo.getTopic(intent.getStringExtra(MainActivity.TOPIC));
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -79,12 +91,13 @@ public class TopicActivity extends FragmentActivity {
         AnswerFragment answerFrag = new AnswerFragment();
 
         Bundle answerBundle = new Bundle();
+        answerBundle.putString(MainActivity.TOPIC, intent.getStringExtra(MainActivity.TOPIC));
         answerBundle.putString("answerSelected", answerSelected);
         answerBundle.putString("correctAnswer", correctAnswer);
         answerBundle.putInt(MainActivity.CURRENT_QUESTION, currentQuestion);
         answerBundle.putInt(MainActivity.ANSWERS_CORRECT, answersCorrect);
-        answerBundle.putInt("questionCount", intent.getStringArrayExtra(MainActivity.QUESTIONS).length);
-        answerBundle.putStringArray(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
+        answerBundle.putInt("questionCount", topic.getQuestions().size());
+        //answerBundle.putStringArray(MainActivity.QUESTIONS, intent.getStringArrayExtra(MainActivity.QUESTIONS));
 
         answerFrag.setArguments(answerBundle);
 

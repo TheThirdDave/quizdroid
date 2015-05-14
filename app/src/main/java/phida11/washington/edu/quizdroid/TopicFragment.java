@@ -23,6 +23,10 @@ public class TopicFragment extends Fragment {
     private int currentQuestion;
     private int answersCorrect;
 
+    private Topic topic;
+    private QuizApp app;
+    private TopicReprository topicRepo;
+
     public TopicFragment() {
         // Required empty public constructor
     }
@@ -30,10 +34,16 @@ public class TopicFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        app = (QuizApp)hostActivity.getApplication();
+        topicRepo = app.getTopicReprository();
+
+
         if (getArguments() != null) {
             // TODO: going to add parameters or initialize arguments
             topicName = getArguments().getString(MainActivity.TOPIC);
-            topicDescription = getArguments().getString(MainActivity.DESCRIPTION);
+            topic = topicRepo.getTopic(topicName);
+            topicDescription = topic.getShortDesc();
         }
 
 

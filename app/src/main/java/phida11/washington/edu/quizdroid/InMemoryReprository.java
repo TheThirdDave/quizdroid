@@ -15,6 +15,7 @@ public class InMemoryReprository implements TopicReprository {
 
 
     public InMemoryReprository() {
+        topics = new HashMap<>();
 
         //Science Topics
         ArrayList<Question> scienceQs = new ArrayList<Question>();

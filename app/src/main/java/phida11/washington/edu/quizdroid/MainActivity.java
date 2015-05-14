@@ -5,17 +5,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.Set;
 
-public class MainActivity extends Activity implements OnClickListener {
+
+public class MainActivity extends Activity {
     public final static String DESCRIPTION = "phida11.washington.edu.quizdroid.DESCRIPTION";
     public final static String TOPIC = "phida11.washington.edu.quizdroid.TOPIC";
     public final static String QUESTIONS = "phida11.washington.edu.quizdroid.QUESTIONS";
@@ -33,6 +41,32 @@ public class MainActivity extends Activity implements OnClickListener {
         app = (QuizApp)getApplication();
         topicRepo = app.getTopicReprository();
 
+        String[] topics = topicRepo.getTopics().toArray(new String[0]);
+
+        final ListView layout = (ListView) findViewById(R.id.TopicList);
+
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, topics);
+
+        layout.setAdapter(adapter);
+        layout.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (view instanceof TextView) {
+                    String topic = (String) ((TextView) view).getText();
+
+                    Intent intent = new Intent(MainActivity.this, TopicActivity.class);
+                    intent.putExtra(TOPIC, topic);
+                    startActivity(intent);
+                }
+
+            }
+        });
+
+
+
+
+        /*
+
         Button button1 = (Button) findViewById(R.id.button1);
 
         button1.setOnClickListener(this);
@@ -40,7 +74,10 @@ public class MainActivity extends Activity implements OnClickListener {
         button2.setOnClickListener(this);
         Button button3 = (Button) findViewById(R.id.button3);
         button3.setOnClickListener(this);
+        */
     }
+
+    /*
 
     @Override
     public void onClick(View v) {
@@ -78,6 +115,8 @@ public class MainActivity extends Activity implements OnClickListener {
                 break;
         }
     }
+
+    */
 
 
     @Override
