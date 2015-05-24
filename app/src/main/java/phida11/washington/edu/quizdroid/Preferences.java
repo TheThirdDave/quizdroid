@@ -1,11 +1,13 @@
 package phida11.washington.edu.quizdroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class Preferences extends ActionBarActivity {
@@ -17,10 +19,18 @@ public class Preferences extends ActionBarActivity {
 
         Button apply = (Button) findViewById(R.id.apply);
 
+        final String url = ((EditText) findViewById(R.id.url)).getText().toString();
+        EditText timeBetween = (EditText) findViewById(R.id.minutes);
+        final int time = Integer.parseInt(timeBetween.getText().toString());
+
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent download = new Intent(Preferences.this, DownloadQuestions.class);
+                download.putExtra("URL", url);
+                download.putExtra("Interval", time);
 
+                Preferences.this.startService(download);
             }
         });
 

@@ -21,7 +21,7 @@ public class DownloadQuestions extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
-            final String action = intent.getAction();
+            final String URL = intent.getDataString();
         }
     }
 }
