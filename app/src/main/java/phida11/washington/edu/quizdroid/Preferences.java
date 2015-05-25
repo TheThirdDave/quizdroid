@@ -21,7 +21,15 @@ public class Preferences extends ActionBarActivity {
 
         final String url = ((EditText) findViewById(R.id.url)).getText().toString();
         EditText timeBetween = (EditText) findViewById(R.id.minutes);
-        final int time = Integer.parseInt(timeBetween.getText().toString());
+        int temp;
+        try {
+            temp = Integer.parseInt(timeBetween.getText().toString());
+        } catch (NumberFormatException nfe) {
+            System.out.println("Could not parse " + nfe);
+            temp = 0;
+        }
+
+        final int time = temp;
 
         apply.setOnClickListener(new View.OnClickListener() {
             @Override

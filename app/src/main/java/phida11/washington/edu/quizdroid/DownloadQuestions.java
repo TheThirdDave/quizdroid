@@ -21,7 +21,10 @@ public class DownloadQuestions extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
-            final String URL = intent.getDataString();
+            String URL = intent.getStringExtra("URL");
+            int interval = intent.getIntExtra("Interval", 0);
+
+
         }
     }
 }

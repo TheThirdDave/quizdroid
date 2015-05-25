@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
     public final static String DESCRIPTION = "phida11.washington.edu.quizdroid.DESCRIPTION";
     public final static String TOPIC = "phida11.washington.edu.quizdroid.TOPIC";
     public final static String QUESTIONS = "phida11.washington.edu.quizdroid.QUESTIONS";
@@ -61,69 +61,14 @@ public class MainActivity extends Activity {
 
             }
         });
-
-
-
-
-        /*
-
-        Button button1 = (Button) findViewById(R.id.button1);
-
-        button1.setOnClickListener(this);
-        Button button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(this);
-        Button button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(this);
-        */
     }
-
-    /*
-
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-
-            case R.id.button1:
-                intent = new Intent(this, TopicActivity.class);
-                Button temp = (Button) findViewById(R.id.button1);
-                String type = temp.getText().toString();
-                intent.putExtra(TOPIC, type);
-                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.mathQuestions));
-                intent.putExtra(DESCRIPTION, getResources().getString(R.string.mathDesc));
-                startActivity(intent);
-                break;
-
-            case R.id.button2:
-                intent = new Intent(this, TopicActivity.class);
-                Button temp2 = (Button) findViewById(R.id.button2);
-                String type2 = temp2.getText().toString();
-                intent.putExtra(TOPIC, type2);
-                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.physicsQuestions));
-                intent.putExtra(DESCRIPTION, getResources().getString(R.string.physicsDesc));
-                startActivity(intent);
-                break;
-
-            case R.id.button3:
-                intent = new Intent(this, TopicActivity.class);
-                Button temp3 = (Button) findViewById(R.id.button3);
-                String type3 = temp3.getText().toString();
-                intent.putExtra(TOPIC, type3);
-                intent.putExtra(QUESTIONS, getResources().getStringArray(R.array.superQuestions));
-                intent.putExtra(DESCRIPTION, getResources().getString(R.string.superDesc));
-                startActivity(intent);
-                break;
-        }
-    }
-
-    */
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -135,6 +80,9 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent pref = new Intent(MainActivity.this, Preferences.class);
+            startActivity(pref);
+
             return true;
         }
 
